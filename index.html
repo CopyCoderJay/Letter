@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magic Letter 💌</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('imagesletter-bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      cursor: pointer;
+    }
+
+    .letter {
+      background: rgba(255, 255, 240, 0.9);
+      padding: 40px;
+      max-width: 700px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      white-space: pre-line;
+      display: none;
+    }
+
+    .blinking-cursor {
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .tap-text {
+      position: absolute;
+      top: 20px;
+      color: #fff;
+      font-size: 24px;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body onclick="showLetter()">
+
+<div class="tap-text" id="tapPrompt">Click anywhere to reveal the magic 💫</div>
+
+<div class="letter" id="letter">
+  <span id="text"></span><span class="blinking-cursor">|</span>
+</div>
+
+<script>
+  const message = `Dear Lover,
+
+Well I Love You Vaan ✨
+
+You are someone truly special.
+
+In a world full of noise, I just wanted to say:
+You are appreciated.
+You are enough.
+And you are loved. 💖
+
+Keep being amazing. 🌟
+
+— Someone who cares 😊(SJ)`;
+  const words = message.split(" ");
+  let index = 0;
+  let speed = 200;
+  let letterShown = false;
+
+  function typeWordByWord() {
+    if (index < words.length) {
+      document.getElementById("text").innerHTML += words[index] + " ";
+      index++;
+      setTimeout(typeWordByWord, speed);
+    }
+  }
+
+  function showLetter() {
+    if (!letterShown) {
+      document.getElementById("letter").style.display = "block";
+      document.getElementById("tapPrompt").style.display = "none";
+      typeWordByWord();
+      letterShown = true;
+    }
+  }
+</script>
+
+</body>
+</html>
